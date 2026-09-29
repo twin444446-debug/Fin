@@ -1,4 +1,3 @@
-
 name: Build MyFinance APK
 
 "on":
@@ -22,18 +21,16 @@ jobs:
           java-version: "17"
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install Android SDK
-        run: |
-          sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        uses: android-actions/setup-android@v4
+        with:
+          packages: "platform-tools"
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: "8.9"
 
-      - name: Build APK
+      - name: Build Debug APK
         run: gradle assembleDebug
 
       - name: Upload APK
